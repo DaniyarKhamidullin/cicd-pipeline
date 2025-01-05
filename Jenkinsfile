@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:lts'
+      args '-p 3005:3000'
+    }
+
+  }
   stages {
     stage('Application Build') {
       steps {
