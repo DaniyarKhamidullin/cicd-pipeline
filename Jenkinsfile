@@ -9,16 +9,13 @@ pipeline {
   stages {
     stage('Application Build') {
       steps {
-        sh '''#!/bin/bash
-npm install'''
+        sh 'npm install'
       }
     }
 
     stage('Tests') {
       steps {
-        sh '''#!/usr/bin/env sh
-
-echo \'The following "npm" command (if executed) installs the "cross-env"\'
+        sh '''echo \'The following "npm" command (if executed) installs the "cross-env"\'
 echo \'dependency into the local "node_modules" directory, which will ultimately\'
 echo \'be stored in the Jenkins home directory. As described in\'
 echo \'https://docs.npmjs.com/cli/install, the "--save-dev" flag causes the\'
@@ -41,15 +38,13 @@ npm test'''
 
     stage('Docker Image Build') {
       steps {
-        sh '''#!/bin/bash
-docker build -t epamimage  '''
+        sh 'docker build -t epamimage  '
       }
     }
 
     stage('Docker Image Push') {
       steps {
-        sh '''#!/bin/bash
-docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
+        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
 
 { 
 app.push("${env.BUILD_NUMBER}") 
