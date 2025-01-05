@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       args '-p 3000:3000'
-      image 'node:7.8.0'
+      image 'node:lts-jod'
     }
 
   }
