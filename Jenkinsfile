@@ -41,13 +41,15 @@ npm test'''
 
     stage('Docker Image Build') {
       steps {
-        sh 'docker build -t epamimage  '
+        sh '''#!/bin/bash
+docker build -t epamimage  '''
       }
     }
 
     stage('Docker Image Push') {
       steps {
-        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
+        sh '''#!/bin/bash
+docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
 
 { 
 app.push("${env.BUILD_NUMBER}") 
