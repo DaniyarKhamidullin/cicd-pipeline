@@ -38,7 +38,7 @@ npm test'''
 
     stage('Docker Image Build') {
       steps {
-        sh 'docker build -t epamimage:$BUILD_NUMBER'
+        sh 'docker build --privileged -t epamimage:$BUILD_NUMBER'
       }
     }
 
@@ -51,7 +51,7 @@ npm test'''
 
     stage('Docker Push Image') {
       steps {
-        sh 'docker push ubiwk/epamimage:$BUILD_NUMBER'
+        sh 'docker push --privileged ubiwk/epamimage:$BUILD_NUMBER'
       }
     }
 
