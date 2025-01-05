@@ -56,4 +56,7 @@ npm test'''
     }
 
   }
+  environment {
+    DOCKERHUB_CREDENTIALS = 'ubiwk_id'
+  }
 }
