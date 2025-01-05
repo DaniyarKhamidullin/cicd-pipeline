@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'node:6-alpine'
       args '-p 3000:3000'
+      image 'ubuntu-latest'
     }
 
   }
@@ -36,6 +36,23 @@ echo \'application renders satisfactorily. This command actually invokes the tes
 echo \'runner Jest (https://facebook.github.io/jest/).\'
 set -x
 npm test'''
+      }
+    }
+
+    stage('Docker Image Build') {
+      steps {
+        sh 'docker build -t epamimage  '
+      }
+    }
+
+    stage('Docker Image Push') {
+      steps {
+        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
+
+{ 
+app.push("${env.BUILD_NUMBER}") 
+app.push("latest") 
+}'''
       }
     }
 
