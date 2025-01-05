@@ -38,18 +38,20 @@ npm test'''
 
     stage('Docker Image Build') {
       steps {
-        sh 'docker build -t epamimage  '
+        sh 'docker build -t epamimage:$BUILD_NUMBER'
       }
     }
 
-    stage('Docker Image Push') {
+    stage('Docker Login Registry') {
       steps {
-        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
+        sh '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+'''
+      }
+    }
 
-{ 
-app.push("${env.BUILD_NUMBER}") 
-app.push("latest") 
-}'''
+    stage('Docker Push Image') {
+      steps {
+        sh 'docker push ubiwk/epamimage:$BUILD_NUMBER'
       }
     }
 
