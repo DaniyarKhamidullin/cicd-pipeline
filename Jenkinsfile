@@ -43,4 +43,7 @@ pipeline {
     }
 
   }
+  environment {
+    DOCKERHUB_CREDENTIALS = 'ubiwk_id'
+  }
 }
