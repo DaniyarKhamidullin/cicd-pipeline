@@ -26,7 +26,19 @@ pipeline {
 
     stage('Docker image built') {
       steps {
-        sh 'docker build . -t epamcicd:$BUILD_NUMBER'
+        sh 'docker build -t ubiwk/epamcicd .'
+      }
+    }
+
+    stage('Docker login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+
+    stage('Docker push image') {
+      steps {
+        sh 'docker push ubiwk/epamcicd'
       }
     }
 
