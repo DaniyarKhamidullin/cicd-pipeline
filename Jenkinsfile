@@ -1,15 +1,23 @@
 pipeline {
   agent {
     docker {
-      image 'node:7.8.0'
       args '-p 3000:3000'
+      image 'ubuntu:latest'
     }
 
   }
   stages {
-    stage('Bulid') {
+    stage('Checkout') {
       steps {
         git(url: 'https://github.com/DaniyarKhamidullin/cicd-pipeline/scripts/build.sh', branch: 'main', credentialsId: 'DaniyarKhamidullin_id')
+      }
+    }
+
+    stage('') {
+      steps {
+        sh '''pwd
+whoami
+ls -la'''
       }
     }
 
