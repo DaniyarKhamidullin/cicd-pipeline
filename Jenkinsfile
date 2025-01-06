@@ -30,8 +30,11 @@ pipeline {
       }
     }
 
-  }
-  environment {
-    DOCKERHUB_CREDENTIALS = 'credentials(\'ubiwk_id\')'
+    stage('Docker push image') {
+      steps {
+        sh 'docker push ubiwk/epamcicd'
+      }
+    }
+
   }
 }
