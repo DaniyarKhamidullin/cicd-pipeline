@@ -21,7 +21,12 @@ pipeline {
     stage('Test') {
       steps {
         sh './scripts/test.sh'
-        sh 'q'
+      }
+    }
+
+    stage('Docker image built') {
+      steps {
+        sh 'docker build -t epamcicd:$BUILD_NUMBER'
       }
     }
 
