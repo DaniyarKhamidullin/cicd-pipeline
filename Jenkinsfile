@@ -7,12 +7,6 @@ pipeline {
 
   }
   stages {
-    stage('Application Build') {
-      steps {
-        sh 'npm install'
-      }
-    }
-
     stage('Tests') {
       steps {
         sh '''echo \'The following "npm" command (if executed) installs the "cross-env"\'
