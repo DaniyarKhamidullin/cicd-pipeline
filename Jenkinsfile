@@ -30,18 +30,6 @@ pipeline {
       }
     }
 
-    stage('Docker login') {
-      steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
-    }
-
-    stage('Docket image push') {
-      steps {
-        sh 'docker push ubiwk/epamcicd'
-      }
-    }
-
   }
   environment {
     DOCKERHUB_CREDENTIALS = 'credentials(\'ubiwk_id\')'
