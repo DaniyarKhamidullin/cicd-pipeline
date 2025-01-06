@@ -26,7 +26,7 @@ pipeline {
 
     stage('Docker image built') {
       steps {
-        sh 'docker build -t epamcicd:$BUILD_NUMBER'
+        sh 'docker build . -t epamcicd:$BUILD_NUMBER'
       }
     }
 
