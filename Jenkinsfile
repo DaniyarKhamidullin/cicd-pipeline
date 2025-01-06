@@ -8,13 +8,13 @@ pipeline {
   stages {
     stage('Bulid') {
       steps {
-        git(url: 'https://github.com/DaniyarKhamidullin/cicd-pipeline/blob/main/scripts/build.sh', branch: 'main', credentialsId: 'DaniyarKhamidullin_id')
+        git(url: 'scripts/build.sh', branch: 'main', credentialsId: 'DaniyarKhamidullin_id')
       }
     }
 
     stage('Test') {
       steps {
-        git(url: 'https://github.com/DaniyarKhamidullin/cicd-pipeline/blob/main/scripts/test.sh', branch: 'main', credentialsId: 'DaniyarKhamidullin_id')
+        git(url: 'scripts/test.sh', branch: 'main', credentialsId: 'DaniyarKhamidullin_id')
       }
     }
 
