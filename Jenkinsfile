@@ -15,7 +15,9 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'pwd && whoami && ls -la'
+        sh 'pwd'
+        sh 'ls -la'
+        sh 'whoami'
       }
     }
 
